@@ -1,0 +1,5 @@
+name: PersistentDeathDrops
+version: '${project.version}'
+main: me.usainsrht.persistentdeathdrops.PersistentDeathDrops
+api-version: '1.13'
+author: UsainSrht
