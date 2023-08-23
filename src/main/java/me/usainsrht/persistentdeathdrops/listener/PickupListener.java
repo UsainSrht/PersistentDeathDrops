@@ -9,7 +9,7 @@ public class PickupListener implements Listener {
 
     @EventHandler
     public void onPickup(PlayerPickupItemEvent e) {
-        boolean isPersistent = NBT.get(e.getItem().getItemStack(), nbt -> nbt.hasTag("persistent"));
+        boolean isPersistent = NBT.get(e.getItem().getItemStack(), nbt -> nbt.hasTag("pdd;persistent"));
         if (isPersistent) {
             NBT.modify(e.getItem().getItemStack(), nbt -> {
                 nbt.removeKey("pdd;persistent");
