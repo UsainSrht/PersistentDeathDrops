@@ -6,7 +6,7 @@
 
     <groupId>me.usainsrht</groupId>
     <artifactId>PersistentDeathDrops</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>PersistentDeathDrops</name>
@@ -36,6 +36,10 @@
                         <relocation>
                             <pattern>de.tr7zw.changeme.nbtapi</pattern>
                             <shadedPattern>me.usainsrht.persistentdeathdrops.nbtapi</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>me.usainsrht.persistentdeathdrops.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -93,7 +97,13 @@
         <dependency>
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api</artifactId>
-            <version>2.11.3</version>
+            <version>2.12.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

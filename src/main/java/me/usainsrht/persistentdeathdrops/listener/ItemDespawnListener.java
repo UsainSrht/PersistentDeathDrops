@@ -1,6 +1,7 @@
 package me.usainsrht.persistentdeathdrops.listener;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.usainsrht.persistentdeathdrops.PersistentDeathDrops;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
@@ -13,9 +14,15 @@ import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.*;
 
 public class ItemDespawnListener implements Listener {
 
+    private PersistentDeathDrops plugin;
+
+    public ItemDespawnListener(PersistentDeathDrops plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onDespawn(ItemDespawnEvent e) {
-        boolean isPersistent = NBT.get(e.getEntity().getItemStack(), nbt -> nbt.hasTag("pdd;persistent"));
+        boolean isPersistent = plugin.isPersistent(e.getEntity().getItemStack());
         if (isPersistent) e.setCancelled(true);
     }
 
@@ -23,9 +30,8 @@ public class ItemDespawnListener implements Listener {
     public void onDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Item) {
             Item item = (Item) e.getEntity();
-            boolean isPersistent = NBT.get(item.getItemStack(), nbt -> nbt.hasTag("pdd;persistent"));
+            boolean isPersistent = plugin.isPersistent(item.getItemStack());
             if (!isPersistent) return;
-            //Bukkit.broadcastMessage("isPersistent " + isPersistent + " " + e.getCause());
             e.setCancelled(true);
             if (e.getCause() == FIRE || e.getCause() == FIRE_TICK || e.getCause() == LAVA) {
                 e.getEntity().setFireTicks(-99999);
